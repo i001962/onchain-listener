@@ -1,0 +1,14 @@
+{
+    "name": "onchain-listener",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "vercel dev"
+    },
+    "dependencies": {
+        "@airstack/node": "^0.0.7",
+        "@vercel/node": "^1.11.0",
+        "dotenv": "^8.6.0",
+        "graphql-request": "^4.0.0"
+    }
+}
