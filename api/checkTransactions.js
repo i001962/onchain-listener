@@ -4,13 +4,28 @@ const axios = require('axios');
 
 const query = `
 query MyQuery {
-  Wallet(input: {identity: "vitalik.eth", blockchain: ethereum}) {
-    transactions {
-      hash
-      value
-      from
-      to
-      timestamp
+  Ethereum: TokenTransfers(
+    input: {
+      filter: {from: {_eq: "vitalik.eth"}},
+      blockchain: ethereum,
+      order: {blockTimestamp: DESC},
+      limit: 1
+    }
+  ) {
+    TokenTransfer {
+      blockchain
+      transactionHash
+      blockTimestamp
+      from {
+        identity
+      }
+      to {
+        identity
+      }
+      amount
+      formattedAmount
+      tokenAddress
+      tokenId
     }
   }
 }
@@ -49,7 +64,7 @@ const checkTransactions = async () => {
 const sendNotification = async (transaction) => {
   const url = 'https://api.warpcast.com/v2/ext-send-direct-cast';
   const WCapiKey = process.env.WC_API_KEY;
-  const recipientFid = 4163; // Kmac's FID
+  const recipientFid = 4163; // Kmac's or castfarerFID 196892
   const idempotencyKey = 'ed3d9b95-5eed-475f-9c7d-58bdc3b9ac00'; // Todo: generate a unique idempotency key
 
   const message = `New transaction detected: ${JSON.stringify(transaction)}`;

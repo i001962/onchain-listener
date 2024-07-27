@@ -1,10 +1,8 @@
 {
     "version": 2,
-    "builds": [
-      { "src": "api/**/*.js", "use": "@vercel/node" }
-    ],
     "env": {
-      "AIRSTACK_API_KEY": "@airstack-api-key"
+      "AIRSTACK_API_KEY": "AIRSTACK_API_KEY",
+      "WC_API_KEY": "WC_API_KEY"
     }
   }
   
